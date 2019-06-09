@@ -1,16 +1,18 @@
-# This project is aimed to participate the MengYa Competition as well as "HUAWEI CUP"
-lastest update : 2019.5.22
+# This project is aimed to participate the MengYa Competition , "Baidu AI" as well as "HUAWEI CUP"
+lastest update| 2019.6.9
 
-![sample](https://github.com/lifuguan/robotics-competition-project/blob/master/img/719faae1d835a67848e93a69fe9d617.jpg)
+![sample](/car-modules/car.jpg)
 
 ## Personal enviornment status
-- Develope software : Visual Studio Code / QT creator
-- OS : Ubuntu 18.04
-- ROS version : melodic
-- language : C++, Python, NodeJS
-- hardware : Arduino, jetson tx2
+| 属性 | 参数 |
+| --- | --- |
+| Develope software| Visual Studio Code 1.35.0 |
+| OS| Ubuntu 18.04 (kernel 4.18) |
+| ROS version| ROS melodic |
+| language| C++, Python, NodeJS |
+| hardware| Arduino, jetson tx2(ARM) or Surface Book(X86) |
+| sensors| Intel Realsense D435i |
 
 ## Brief introduction
-- A autonomous car which can arrive at an indicated location in a scanned room.
-- Operate in the mobile phone by App.
-- Transmitting signals via Bluetooth.
+- A autonomous car which can arrive at an indicated location in a scanned space.
+- Transmitting signals via WI-FI.

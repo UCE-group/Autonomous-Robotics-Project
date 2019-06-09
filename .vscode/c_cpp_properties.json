@@ -5,10 +5,13 @@
             "includePath": [
                 "/home/robomaster/arduino-1.8.8/tools/**",
                 "/home/robomaster/arduino-1.8.8/hardware/arduino/avr/**",
-                "/home/robomaster/sketchbook/**"     
+                "/home/robomaster/sketchbook/**",
+                "C:\\Arduino\\hardware\\arduino\\avr\\**",
+                "C:\\Arduino\\tools\\**"
             ],
             "forcedInclude": [
-                "/home/robomaster/arduino-1.8.8/hardware/arduino/avr/cores/arduino/Arduino.h"
+                "/home/robomaster/arduino-1.8.8/hardware/arduino/avr/cores/arduino/Arduino.h",
+                "C:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
             "intelliSenseMode": "gcc-x64",
             "compilerPath": "/usr/bin/gcc",
