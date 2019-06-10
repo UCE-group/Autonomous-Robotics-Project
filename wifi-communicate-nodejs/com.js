@@ -1,7 +1,7 @@
 
 // 初始化节点
 const rosnodejs = require('rosnodejs');
-rosnodejs.initNode('/my_node')
+rosnodejs.initNode('/instruction_listener')
 .then(() => {
   // do stuff
 });
