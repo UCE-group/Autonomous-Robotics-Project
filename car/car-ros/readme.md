@@ -1,17 +1,15 @@
-## Cherry Autonomous Racecar(CAR) ROS package
+# Autonomous Car Project ROS package. 
+| 状态 | 正在完善 |
+| ---- | ---- |
+| 时间 | 2019.6.11 |
 
-### Sample trained model can be found here
-https://drive.google.com/drive/folders/0Bx1XHaRXk3kSY1pfaW9hOVU4RWc
-<br/>
-Copy all three files into the scripts folder of the CAR ROS package
-<br/>
-### To start ROS Network
-roslaunch car runCAR.launch
-<br/>
-### To start Neural Net
-rosrun car runModel.py
-___
-## CAR controls for Xbox 360
+## To start ROS Network. 运行 ROS 节点
 
-![Alt text](/pictures/controllerCAR.png "CAR Controller")
+```bash
+roscore
 
+roslaunch car display.launch
+```
+
+## CAR controls for Arduino remote control. 使用Arduino摇杆控制小车
+Working on it.

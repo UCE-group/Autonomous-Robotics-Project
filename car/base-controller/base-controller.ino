@@ -6,11 +6,13 @@
  */
 
 
-
+#include <PID_v1.h>
 #include <ros.h>
 #include <ros/time.h>
 #include <tf/tf.h>
 #include <tf/transform_broadcaster.h>
+#include <geometry_msgs/Twist.h>
+#include <nav_msgs/Odometry.h>
 
 ros::NodeHandle  nh;
 
@@ -28,6 +30,17 @@ double x = 0.0;
 double y = 0.0;
 double theta = 0.00;
 
+//速度（矢量）给出
+double linear = 0.00;
+double angular = 0.00;
+
+void motor_cb(const geometry_msgs::Twist& vel)
+{
+  linear = vel.linear.x /* * 100*/ ; //ROS中的单位是m/s;这里换算成cm的单位(有待考证)
+  angular = vel.angular.z;
+}
+ros::Subscriber<geometry_msgs::Twist> sub("/cmd_vel", motor_cb);
+
 char base_link[] = "/base_link";
 char odom[] = "/odom";
 
@@ -35,18 +48,14 @@ void setup()
 {
   nh.initNode();
   broadcaster.init(nh);
+  nh.subscribe(sub);
 }
 
 void loop()
 {  
-  //速度（矢量）给出
-  double dx = 0.01;
-  double dtheta = 0.00;
-  
-
-  x += cos(theta)*dx*0.1;
-  y += sin(theta)*dx*0.1;
-  theta += dtheta*0.1;
+  x += cos(theta)*linear*0.1;
+  y += sin(theta)*linear*0.1;
+  theta += angular*0.1;
   if(theta > 3.14)
     theta=-3.14;
     
