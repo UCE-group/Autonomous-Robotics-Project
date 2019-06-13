@@ -14,6 +14,7 @@ lastest update| 2019.6.11
 | sensors| Intel Realsense D435i |
 
 ## Brief introduction
+
 - A autonomous car which can arrive at an indicated location in a scanned space.
 - Transmitting signals via WI-FI.
 
@@ -26,6 +27,9 @@ lastest update| 2019.6.11
     * teleop-twist-keyboard : 终端控制小车，用于见图（SLAM）
 * car-modules 
     * 小车的3D模型，班子CAD图等文件
+* LPR
+    * self_LPR : 自主训练数据集（过拟合）
+    * hyper_LPR : hyperLPR (SDK, 成功)
 * parking-sensor-arduino
     * 停车场传感器代码
 * parking-sensor-web
