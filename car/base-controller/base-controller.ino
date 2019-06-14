@@ -1,12 +1,12 @@
 /*
 @作者 : lifuguan, Wacokgde
-@时间 : 2019.6.11
+@时间 : 2019.6.13
 @状态 : 测试中
 @作用 : 以后再写。。。
  */
 
 
-#include <PID_v1.h>
+#include "base-controller.h"
 #include <ros.h>
 #include <ros/time.h>
 #include <tf/tf.h>
@@ -49,6 +49,34 @@ void setup()
   nh.initNode();
   broadcaster.init(nh);
   nh.subscribe(sub);
+
+  
+  Serial.begin(9600);
+  Serial2.begin(9600);
+  pinMode(IN1_AL, OUTPUT);
+  pinMode(IN2_AL, OUTPUT);
+  pinMode(IN3_AR, OUTPUT);
+  pinMode(IN4_AR, OUTPUT);
+
+  pinMode(IN1_BL, OUTPUT);
+  pinMode(IN2_BL, OUTPUT);
+  pinMode(IN3_BR, OUTPUT);
+  pinMode(IN4_BR, OUTPUT);
+
+  digitalWrite(IN1_AL, HIGH);
+  digitalWrite(IN2_AL, LOW);
+  digitalWrite(IN3_AR, LOW);
+  digitalWrite(IN4_AR, HIGH);
+
+  digitalWrite(IN1_BL, HIGH);
+  digitalWrite(IN2_BL, LOW);
+  digitalWrite(IN3_BR, LOW);
+  digitalWrite(IN4_BR, HIGH);
+  attachInterrupt(digitalPinToInterrupt(left_front_wheel.hall), left_front_count, FALLING);
+  attachInterrupt(digitalPinToInterrupt(right_front_wheel.hall), right_front_count, FALLING);
+  attachInterrupt(digitalPinToInterrupt(left_back_wheel.hall), left_back_count, FALLING);
+  attachInterrupt(digitalPinToInterrupt(right_back_wheel.hall), right_back_count, FALLING); //中断函数 用于0计数
+
 }
 
 void loop()
@@ -58,7 +86,29 @@ void loop()
   theta += angular*0.1;
   if(theta > 3.14)
     theta=-3.14;
-    
+    //get_velomg();                  //配合遥控建图使用
+
+  /*from 92 to 109 */
+  omg_in = theta;                 //转向速度输入
+  vel_in = linear;                //前进速度输入 
+  left_front_wheel.vel_process();
+  left_front_wheel.SetPoint = left_front_wheel.vel_out / (16 * 3.14) * 33; //填入的数字除以33即为转速/所需转速乘以33即为Setpoint_l
+  left_front_wheel.pid_process();
+  //left_front_wheel.test();  
+
+  right_front_wheel.vel_process();
+  right_front_wheel.SetPoint = right_front_wheel.vel_out / (16 * 3.14) * 33; //填入的数字除以33即为转速/所需转速乘以33即为Setpoint_l
+  right_front_wheel.pid_process();
+  
+  left_back_wheel.vel_process();
+  left_back_wheel.SetPoint = left_back_wheel.vel_out / (16 * 3.14) * 33; //填入的数字除以33即为转速/所需转速乘以33即为Setpoint_l
+  left_back_wheel.pid_process();
+
+  right_back_wheel.vel_process();
+  right_back_wheel.SetPoint = right_back_wheel.vel_out / (16 * 3.14) * 33; //填入的数字除以33即为转速/所需转速乘以33即为Setpoint_l
+  right_back_wheel.pid_process();
+
+
   // tf odom->base_link
   t.header.frame_id = odom;
   t.child_frame_id = base_link;

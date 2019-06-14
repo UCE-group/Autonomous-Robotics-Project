@@ -1,3 +1,10 @@
+/*
+@作者 : Wacokgde
+@时间 : 2019.6.13
+@状态 : 测试中
+@作用 : 以后再写。。。
+ */
+
 #include <PID_v1.h>
 #include <string.h>
 int IN1_AL = 23;
@@ -187,6 +194,7 @@ void get_velomg() //此处程序为遥控车用,读取串口2收到的速度与�
   Serial.println(omg_in);
 }
 
+/*
 void setup()
 {
   Serial.begin(9600);
@@ -215,6 +223,9 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(left_back_wheel.hall), left_back_count, FALLING);
   attachInterrupt(digitalPinToInterrupt(right_back_wheel.hall), right_back_count, FALLING); //中断函数 用于0计数
 }
+*/
+
+/*
 void loop()
 {
   //get_velomg();                  //配合遥控建图使用
@@ -237,3 +248,4 @@ void loop()
   right_back_wheel.SetPoint = right_back_wheel.vel_out / (16 * 3.14) * 33; //填入的数字除以33即为转速/所需转速乘以33即为Setpoint_l
   right_back_wheel.pid_process();
 }
+*/
